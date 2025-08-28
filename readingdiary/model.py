@@ -37,4 +37,15 @@ class Book:
         self.rating = rating
         return True
 
+    def get_notes_of_page(self, page: int) -> list[Note]:
+        return [note for note in self.notes if note.page == page]
+
+    def page_with_most_notes(self) -> int:
+        if not self.notes:
+            return -1
+        page_count = {}
+        for note in self.notes:
+            page_count[note.page] = page_count.get(note.page, 0) + 1
+        return max(page_count, key=page_count.get)
+
 
